@@ -1,0 +1,142 @@
+<?php
+namespace $repository_namespace;
+
+use $model_namespace;
+
+class $class_name extends BaseRepository
+{
+    /**
+     * @var \$model_namespace
+     */
+    public $model;
+
+    public function __construct($model_name $$model_var_name)
+    {
+        $this->model = $$model_var_name;
+    }
+
+    /**
+     * @param array $columns
+     * @return mixed
+     */
+    public function all($columns = ['*'])
+    {
+        return $this->model->all($columns);
+    }
+
+    /**
+     * @param int $perPage
+     * @param array $columns
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function paginate($perPage = 0, $columns = ['*'])
+    {
+        return $this->model->paginate($perPage ?: 15, $columns);
+    }
+
+    /**
+     * Create a new $model_var_name
+     * @param array $data
+     * @return \$model_namespace
+     */
+    public function create(array $data)
+    {
+        return $this->model->create($data);
+    }
+
+     /**
+       * Update a $model_var_name
+       * @param array $data
+       * @param $id
+       * @return \$model_namespace
+       */
+    public function update($data = [], $id)
+    {
+        return $this->model->find($id)->update($data);
+    }
+
+    /**
+     * Store a $model_var_name
+     * @param array $data
+     * @return \$model_namespace
+     */
+    public function store($data = [])
+    {
+        $this->model->id = $data['id'];
+        //...
+        return $this->model->save();
+    }
+
+    /**
+     * Delete a $model_var_name
+     * @param $id
+     * @return \$model_namespace
+     */
+    public function delete($id)
+    {
+        return $this->model->destroy(explode(',', $id));
+    }
+
+    /**
+     * @param $id
+     * @param array $columns
+     * @return mixed
+     */
+    public function find($id, $columns = ['*'])
+    {
+        return $this->model->whereId($id)->first($columns);
+    }
+
+    /**
+     * @param $field
+     * @param $value
+     * @param array $columns
+     * @return mixed
+     */
+    public function findBy($field, $value, $columns = ['*'])
+    {
+        return $this->model->where($field, '=', $value)->first($columns);
+    }
+
+    /**
+     * @param $id
+     * @param array $columns
+     * @return mixed
+     */
+    public function get($id, $columns = ['*'])
+    {
+        return $this->model->whereId($id)->get($columns);
+    }
+
+    /**
+     * @param $field
+     * @param $value
+     * @param array $columns
+     * @return mixed
+     */
+    public function getBy($field, $value, $columns = ['*'])
+    {
+        return $this->model->where($field, '=', $value)->get($columns);
+    }
+
+    /**
+     * @param $id
+     *
+     * @return mixed
+     */
+    public function enable($id)
+    {
+        return $this->model->whereIn('id', explode(',', $id))->update(['status'=>1]);
+    }
+
+    /**
+     * @param $id
+     *
+     * @return mixed
+     */
+    public function disable($id)
+    {
+        return $this->model->whereIn('id', explode(',', $id))->update(['status'=>0]);
+    }
+
+}

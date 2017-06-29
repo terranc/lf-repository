@@ -1,0 +1,24 @@
+{
+    "name": "terranc/lf-repository",
+    "description": "Laravel 5 repository generator.",
+    "keywords": ["laravel", "repository"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "terranc",
+            "email": "terran.chao@lookfeel.co"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~5.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lookfeel\\Repository\\": "src/"
+        }
+    }
+}
