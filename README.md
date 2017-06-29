@@ -8,7 +8,7 @@
 composer install terranc/lf-repository --dev
 ```
 ### Step 2
-Add the following code to your app/Providers/AppServiceProvider.php file, within the root() method:
+Add the following code to your `app/Providers/AppServiceProvider.php` file, within the `root()` method:
 ```php
 if ($this->app->environment() == 'local') {
   $this->app->register(\Lookfeel\Repository\RepositoryServiceProvider::class);
