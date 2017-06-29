@@ -1,4 +1,4 @@
-# lf-repository
+# LF-repository
 
 ## Installation
 
