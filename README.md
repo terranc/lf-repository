@@ -11,7 +11,7 @@ composer install terranc/lf-repository --dev
 In the `appServiceProvider.php`` boot` method inside add:
 ```php
 if ($this->app->environment() == 'local') {
-  $this->app->register(\Lookfeel\Boilerplate\GeneratorCommandServiceProvider::class);
+  $this->app->register(\Lookfeel\Repository\RepositoryServiceProvider::class);
 }
 ```
 
