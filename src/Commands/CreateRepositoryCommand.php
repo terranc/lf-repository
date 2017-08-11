@@ -3,6 +3,7 @@
 namespace Lookfeel\Repository\Commands;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
@@ -200,7 +201,7 @@ class CreateRepositoryCommand extends Command
             'model_namespace' => $modelNamespace,
             'class_name' => $className,
             'model_name' => $modelName,
-            'model_var_name' => strtolower($modelName),
+            'model_var_name' => Str::camel($modelName),
         ];
 
         return $templateVar;
@@ -230,8 +231,8 @@ class CreateRepositoryCommand extends Command
 
     private function getModelFromRepository()
     {
-        $repository = strtolower($this->getRepository());
-        $repository = str_replace('repository', '', $repository);
+        $repository = Str::camel($this->getRepository());
+        $repository = str_replace('Repository', '', $repository);
         return ucfirst($repository);
     }
 
